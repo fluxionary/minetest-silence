@@ -1,0 +1,2 @@
+# radius (L1) in which to silence sounds
+silence.radius (silence radius) int 8 0 80
