@@ -1,31 +1,7 @@
-silence = {}
+silence = fmod.create()
 
-function silence.log(level, msgformat, ...)
-    minetest.log(level, "[silence] " .. msgformat:format(...))
-end
-
-local radius = tonumber(minetest.settings:get("silence.radius")) or 8
+local radius = silence.settings.radius
 local delta = vector.new(radius, radius, radius)
-
-local function safe_serialize(thing)
-    if type(thing) == "nil" then
-        return "nil"
-    elseif type(thing) == "string" then
-        return thing
-    elseif type(thing) == "number" then
-        return tostring(thing)
-    elseif type(thing) == "userdata" then
-        return "<userdata>"
-    elseif type(thing) == "table" then
-        local str = "{"
-        for k, v in pairs(thing) do
-            str = str .. ("%s = %s, "):format(safe_serialize(k), safe_serialize(v))
-        end
-        return str .. "}"
-    else
-        return ("%s(%s)"):format(type(thing), tostring(thing))
-    end
-end
 
 minetest.register_node("silence:silencer", {
     description = "Sound Silencer",
