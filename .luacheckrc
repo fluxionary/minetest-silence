@@ -1,4 +1,4 @@
-std = "lua51+luajit+minetest+futil"
+std = "lua51+luajit+minetest+silence"
 unused_args = false
 max_line_length = 120
 
@@ -645,9 +645,9 @@ stds.minetest = {
 	}
 }
 
-stds.futil = {
+stds.silence = {
 	globals = {
-		"futil",
+		"silence",
 	},
 	read_globals = {
 		"fmod",
