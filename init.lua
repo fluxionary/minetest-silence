@@ -47,7 +47,14 @@ function minetest.sound_play(spec, parameters, ephemeral)
 			end
 		elseif parameters.object then
 			local pos = parameters.object:get_pos()
-			if should_silence_in_area(pos) then
+			if not pos then
+				silence.log(
+					"warning",
+					"[silence] sound object has no position? %s",
+					tostring(minetest.write_json(spec))
+				)
+				return
+			elseif should_silence_in_area(pos) then
 				silence.log(
 					"info",
 					"[silence] silenced %s at %s",
